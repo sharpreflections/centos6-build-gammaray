@@ -14,6 +14,7 @@ RUN yum -y install epel-release centos-release-scl && \
     git clone https://github.com/KDAB/GammaRay.git --branch v$version && \
     mkdir GammaRay-build && cd GammaRay-build && \
     cmake3 ../GammaRay -DCMAKE_PREFIX_PATH=/p/hpc/psp/Qt/Qt-5.12.0-gcc-8.3.1 \
+                       -DCMAKE_INSTALL_RPATH_USE_LINK_PATH=OFF \
                        -DCMAKE_INSTALL_PREFIX=$prefix/gammaray-$version && \
     make -j $(nproc) && \
     make install && \
