@@ -18,5 +18,5 @@ RUN yum -y install epel-release centos-release-scl && \
     make -j $(nproc) && \
     make install && \
     rm -rf /build/* && \
-    yum history undo last && yum clean all
+    yum -y history undo last && yum clean all
 
