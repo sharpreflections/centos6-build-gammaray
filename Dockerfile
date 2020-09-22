@@ -18,6 +18,6 @@ RUN yum -y install epel-release centos-release-scl && \
                        -DCMAKE_INSTALL_PREFIX=$prefix/gammaray-$version && \
     make -j $(nproc) && \
     make install && \
-    rm -rf /build/* && \
+    rm -rf /build/* && rm -rf /p/hpc/psp/Qt && \
     yum -y history undo last && yum clean all
 
