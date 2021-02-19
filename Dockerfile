@@ -8,6 +8,9 @@ WORKDIR /build/
 COPY --from=sharpreflections/centos6-build-qt:qt-5.12.0_gcc-8.3.1 /p/ /p/
 
 RUN yum -y install epel-release centos-release-scl && \
+    # the repo files still point to the centos mirrorlist which is down
+    sed --in-place '/mirrorlist.*/d;s,^# \(.*\)=.*,\1=http://vault.centos.org/centos/6/sclo/$basearch/sclo/,'  /etc/yum.repos.d/CentOS-SCLo-scl.repo && \
+    sed --in-place '/mirrorlist.*/d;s,^#\(.*\)=.*,\1=http://vault.centos.org/centos/6/sclo/$basearch/rh/,'  /etc/yum.repos.d/CentOS-SCLo-scl-rh.repo && \
     yum -y install sclo-git212 cmake3 devtoolset-8 mesa-libGL-devel && \
     source /opt/rh/sclo-git212/enable  && \
     source /opt/rh/devtoolset-8/enable && \
