@@ -1,11 +1,11 @@
-FROM sharpreflections/centos6-build-binutils
+FROM quay.io/sharpreflections/centos6-build-binutils
 LABEL maintainer="dennis.brendel@sharpreflections.com"
 
 ARG prefix=/p/hpc/psp/GammaRay
 ARG version=2.11.2
 WORKDIR /build/
 
-COPY --from=sharpreflections/centos6-build-qt:qt-5.12.0_gcc-8.3.1 /p/ /p/
+COPY --from=quay.io/sharpreflections/centos6-build-qt:qt-5.12.0_gcc-8.3.1 /p/ /p/
 
 RUN yum -y install epel-release centos-release-scl && \
     # the repo files still point to the centos mirrorlist which is down
